@@ -41,9 +41,9 @@
 		<?php endif; ?>
 
 		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'popper' ) ); ?>"><?php printf( esc_html__( 'Proudly powered by %s', 'popper' ), 'WordPress' ); ?></a>
+			<a href="<?php echo esc_url( __( '#', '144' ) ); ?>"><?php printf( esc_html__( '#', '144' ), '#' ); ?></a>
 			<span class="sep"> | </span>
-			<?php printf( esc_html__( 'Theme: %1$s by %2$s.', 'popper' ), 'popper', '<a href="http://mor10.com" rel="designer nofollow">Morten Rand-Hendriksen</a>' ); ?>
+			<?php printf( esc_html__( '#', 'popper' ), '233', '<a href="#" rel="designer nofollow">////a>' ); ?>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->
