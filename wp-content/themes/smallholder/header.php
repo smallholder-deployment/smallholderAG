@@ -71,7 +71,7 @@ if ( is_page_template( 'page-templates/page-sidebar-right.php' ) ) { ?>
 			<?php
 				$site_description = get_bloginfo( 'description' );
 				if ($site_description != null ){ ?>
-				<p class="site-description"><?php bloginfo( 'description' ); ?></p>
+				
 				<?php }
 			?>
 		</div><!-- .site-branding -->
@@ -86,6 +86,20 @@ if ( is_page_template( 'page-templates/page-sidebar-right.php' ) ) { ?>
 				</div>
 
 			</nav><!-- #site-navigation -->
+
+		<div class="descriptionBanner centered<?php if ( is_singular() ) : echo ' screen-reader-text'; endif; ?>">
+			<?php if ( is_front_page() && is_home() ) : ?>
+			<?php else : ?>
+				<p class="descriptionBanner"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
+			<?php endif; ?>
+			<?php
+				$site_description = get_bloginfo( 'description' );
+				if ($site_description != null ){ ?>
+				<p class="site-description"><?php bloginfo( 'description' ); ?></p>
+				<?php }
+			?>
+		</div><!-- .site-branding -->
+
 		<?php endif; ?>
 	</header><!-- #masthead -->
 

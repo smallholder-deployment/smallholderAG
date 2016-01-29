@@ -1,4 +1,12 @@
+<div class="descriptionBannerSingle">
+				<p class="descriptionBanner"><a></a></p>
+				<p class="site-descriptionSingle"><?php bloginfo( 'description' ); ?></p>
+
+				<h1 class="site-titleSingle"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+</div><!-- .site-description banner -->
+
 <?php
+
 /**
  * The Child Theme template for displaying all single posts.
  *
@@ -9,7 +17,15 @@
 
 get_header(); ?>
 
+
+
 	<div id="primary" class="content-area">
+
+
+
+
+
+
 		<main id="main" class="site-main" role="main">
 
 		<?php while ( have_posts() ) : the_post(); ?>

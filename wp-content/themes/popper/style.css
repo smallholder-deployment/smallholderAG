@@ -792,7 +792,8 @@ a:active {
 .widget_nav_menu a{
 	display: block;
 	padding: 1em 0;
-	border-bottom: 1px solid #c3c3c3;
+	border-bottom: 1px solid red;
+
 }
 
 .site-content .widget_pages li,
