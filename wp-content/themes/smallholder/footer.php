@@ -14,31 +14,7 @@
 	</div><!-- #content -->
 
 	<footer id="colophon" class="site-footer" role="contentinfo">
-		<?php
-		if ( is_active_sidebar( 'sidebar-1' ) ) { ?>
-			<div id="tertiary" class="widget-area clear" role="complementary">
-				<?php dynamic_sidebar( 'sidebar-2' ); ?>
-			</div><!-- #secondary -->
-		<?php }
-		?>	
 
-        <?php if ( has_nav_menu( 'secondary' ) ) : ?>
-			<nav id="footer-navigation" class="footer-navigation clear" role="navigation">
-
-				<div class="the-footer-menu centered">
-					<?php
-                    wp_nav_menu(
-                        array(
-                            'theme_location' => 'secondary',
-                            'menu_id' => 'secondary-menu',
-                            'depth' => 1
-                        )
-                    );
-                    ?>
-				</div>
-
-			</nav><!-- #site-navigation -->
-		<?php endif; ?>
 
 		<div class="site-info">
 			<a href="<?php echo esc_url( __( '#', '144' ) ); ?>"><?php printf( esc_html__( '#', '144' ), '#' ); ?></a>

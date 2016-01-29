@@ -58,6 +58,7 @@ textarea,
     
     width: 100%; 
     margin: 0 auto;
+    min-height: 0;
    
     background-color: #1D2326;
   
@@ -162,7 +163,7 @@ body {
 
 h2.widget-title::after{
 
-     background-color: #F5F8E8;
+    background-color: #F5F8E8;
     height: 100px;
     width: 100%;
     margin-top: 96px;
@@ -172,7 +173,6 @@ h2.widget-title::after{
     border-top-width: 3px;
     border-top-color: #F46F1B;
     border-top-style: solid;
-
 
 }
 
@@ -221,25 +221,16 @@ h2.widget-title{
 }
 
 
-.entry-content.index-excerpt {
-    margin-top: .3em;
-    color: #313B3F;
-    font-family: 'AvenirNextLTPro-Regular';
-}
-
-.meta-content {
-    display: inline;
-    height: 100px;
-    color: #313B3F;
-    font-family: 'AvenirNextLTPro-Regular';
-}
-
-.entry-meta {
-     background-color: #F5F8E8;
-      display: inline-block;
 
 
 
+
+
+
+.menu-tabs-container{
+
+  width: 100%;
+  max-height: 30px;
 }
 
 
@@ -259,14 +250,14 @@ h2.widget-title{
 
 
 
+
+
 .entry-title {
     text-align: left;
+    color: #F8823B;
+    font-size: 2.4em;
+    margin-bottom: 1.5em;
 
-}
-
-.entry-title a {
-    color: #FC6F29;
-    text-decoration: none;
 }
 
 
@@ -275,17 +266,27 @@ h2.widget-title{
     text-decoration: none;
     color: #F8823B;
 }
-.entry-header .index-entry-meta{
+
+.entry-header {
+
+ 
+
+}
+
+.index-entry-meta, .entry-meta{
     background-color: #F5F8E8;
     font-style: inherit;
+    padding-top: 5px;
 }
 
-.entry-meta a{
 
-    
-     color: #F8823B;
-     
+.entry-content.index-excerpt {
+
+    color: #313B3F;
+    font-family: 'AvenirNextLTPro-Regular';
 }
+
+
 #secondary {
     background-color: white;
     
@@ -294,15 +295,11 @@ h2.widget-title{
 
 .meta-content{
     display: inline;
-    height: 100px;
-
+    font-size: 0.96em;
+    display: inline;
+    color: #313B3F;
+    font-family: 'AvenirNextLTPro-Regular';
 }
-
-
-
-
-
-
 
 
 
@@ -317,6 +314,16 @@ h2.widget-title{
 
 }
 
+.site-titleSingle {
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: red;
+
+
+}
+
 .site-title a{
    
     color: white;
@@ -324,9 +331,23 @@ h2.widget-title{
     float: left;
     display: inline-block;
     margin-top: 240px;
-    font-size: 72px;
+    font-size: 68px;
     text-transform: lowercase;
     font-family: 'AvenirNextLTPro-Demi';
+}
+
+.site-titleSingle a{
+    color: white;
+    font-weight: 600;
+    float: none;
+    display: inline-block;
+    margin-top: -50px;
+    font-size: 68px;
+    text-transform: lowercase;
+    font-family: 'AvenirNextLTPro-Demi';
+    text-decoration: none;
+
+
 }
 
 .site-title a:hover{
@@ -345,16 +366,24 @@ h2.widget-title{
 .site-description {
     font-style: italic;
     height: 10px;
-    background: red;
+
+
+
+
 
 }
 
 p.site-description {
-    font-style: italic;
-    height: 10px;
-    background: blue;
+    font-style: inherit;
+    font-size: 2em;
+    color: white;
+    text-align: center;
+    font-family: 'AvenirNextLTPro-Regular';
+    margin-top: -200px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
 
-    margin-top: -50px;
 }
 
 .site-content {
@@ -369,13 +398,44 @@ p.site-description {
 .byline, .posted-on, .entry-meta .comments-link {
     display: inline;
     padding: 0;
+    font-size: 0.96em;
+}
+
+.byline a{
+
+  font-size: 1.1em;
+
+
+}
+
+.byline::after{
+
+    content: "|";
+    padding: 0 1em;
+}
+
+.comments-link::before{
+
+    content: "|";
+    padding: 0 1em;
+
 }
 
 .entry-meta {
     background-color: #F5F8E8;
-    display: inline-block;
-    padding: 0;
+    padding: 5px 0;
+    margin-top: -50px;
 }
+
+.entry-meta a{
+
+  font-size: 0.86em;
+  color: #F8823B;
+  font-family: 'AvenirNextLTPro-Regular';
+
+}
+
+
 
 .site-footer{
   background-color: #1D2326;
@@ -397,4 +457,69 @@ p.site-description {
     border-top-color: #F46F1B;
     border-top-style: solid;
 }
+
+
+.descriptionBanner{
+
+    width: 100%;
+    height: 280px;
+    background-color: #1D2326;
+    background: url(images/map.svg) no-repeat;
+    background-size: inherit;
+    background-position: center;
+    margin-top: -30px;
+
+
+
+}
+
+
+.descriptionBannerSingle{
+
+    width: 100%;
+    height: 260px;
+    border-top-style: solid;
+    border-top-color: #1D2326;
+    border-top-width: 24px;
+    background-color: #1D2326;
+    background: url(images/map.svg) no-repeat;
+    background-size: inherit;
+    background-position: top;
+
+
+
+
+}
+
+p.descriptionBannerSingle{
+
+
+    font-style: inherit;
+    font-size: 2em;
+    color: white;
+    text-align: right;
+    font-family: 'AvenirNextLTPro-Regular';
+    margin-top: -200px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+
+
+
+
+}
+
+p.site-descriptionSingle {
+    font-style: inherit;
+    font-size: 2em;
+    color: white;
+    text-align: right;
+    font-family: 'AvenirNextLTPro-Regular';
+    margin-top: -200px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+
+}
+
 
