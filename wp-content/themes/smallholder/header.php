@@ -120,10 +120,20 @@
 	}
 ?>
 
-		<div class="container container-current-page">
+		<div class="container container-mark">
 			<div class="content">
-				<div class="current-page">
-					<h2>Blog</h2>
+				<div class="container-title">
+			<?php
+				if (is_front_page()) {
+			?>
+					<h2>LATEST NEWS</h2>
+			<?php
+				} else {
+			?>
+					<h2><?php echo get_the_title(); ?></h2>
+			<?php
+				}
+			?>
 				</div>
 			</div>
 		</div>

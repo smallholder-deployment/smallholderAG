@@ -23,6 +23,8 @@ Author URI: twitter.com/afcespedes
 html {
 	height: 100%;
 	width: 100%;
+	max-width: 1920px;
+	margin: 0 auto;
 }
 
 body {
@@ -35,9 +37,13 @@ body {
 	min-width: 100%;
 }
 
-body a {
+a {
 	text-decoration: none;
 	color: #000;
+}
+
+a:hover {
+	text-decoration: underline;
 }
 
 header {
@@ -161,16 +167,19 @@ nav {
 	margin: 0 0 0 5px;
 }
 
-.current-page {
+.container-title {
+	display: flex;
+	flex-flow: row wrap;
 	width: 100%;
 }
 
-.current-page h2 {
+.container-title h2 {
 	padding: 20px 0;
 	text-transform: uppercase;
+	width: 50%;
 }
 
-.container-current-page {
+.container-mark {
 	border: none;
 	background: rgb(245,250,230);
 }
@@ -184,7 +193,7 @@ nav {
 	
 	/*margin: 300px auto 30px auto;*/ /*header fixed*/
 	margin: 25px auto;
-	width: 80%;
+	width: 100%;
 }
 
 aside {
@@ -209,7 +218,12 @@ article:last-child {
 }
 
 article p {
-	text-align: justify;
+	/*text-align: justify;*/
+}
+
+article img {
+	max-width: 100%;
+	height: auto;
 }
 
 .date {
@@ -218,7 +232,7 @@ article p {
 	justify-content: space-between;
 
 	background: rgb(245,250,230);
-	padding: 10px 0;
+	padding: 10px 20px;
 	margin-bottom: 10px;
 }
 
@@ -237,7 +251,7 @@ footer p {
 	font-weight: bold;
 }
 
-.widget {
+.custom-widget {
 	margin: 15px 0;
 	width: 80%;
 	border-top: 4px solid rgb(250,130,60); 
@@ -246,7 +260,7 @@ footer p {
 	padding: 0 20px;
 }
 
-.widget li {
+.custom-widget li {
 	list-style: none;
 }
 
@@ -279,4 +293,144 @@ footer p {
 	height: 5px;
 	background-color: rgb(202,215,124);
 	border: none;
+}
+
+.latest-news {
+	flex-direction: column;
+	width: 100%;
+}
+
+.first-post {
+	display: flex;
+	flex-flow: row wrap;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.first-post div,
+.first-post hgroup {
+	width: 48%;
+}
+
+.first-post h1 > a {
+	color: rgb(250,130,60);
+}
+
+.first-post .date {
+	background: #fff;
+	font-weight: bold;
+	/*margin-top: -15px !important;*/
+	padding: 0 !important;
+}
+
+.second-post {
+	margin-top: 30px;
+}
+
+.second-post h1 {
+	font-size: 1em;
+}
+
+.second-post div {
+	width: 35%;
+}
+
+.second-post hgroup {
+	width: 60%;
+}
+
+.author {
+	color: rgb(250,130,60);
+	font-weight: bold;
+}
+
+.post-thumbnail {
+	width: 100%;
+	height: auto;
+}
+
+.width-100 {
+	width: 100% !important;
+}
+
+.content-post {
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.margin-top {
+	margin-top: 30px !important;
+}
+
+.more-news,
+.twitter {
+	display: flex;
+	flex-flow: column wrap;
+	width: 48%;
+	margin-top: 20px;
+}
+
+.flex-row {
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+
+/*.continue-reading {
+	display: flex;
+	justify-content: flex-end;
+	width: 100% !important;
+	margin-top: 10px;
+}*/
+
+.continue-reading {
+	color: rgb(250,130,60);
+	font-size: 0.8em;
+	font-weight: bold;
+}
+
+.continue-reading:hover,
+.first-post h1 > a:hover {
+	color: rgba(250,130,60,0.8);
+}
+
+.no-display {
+	display: none;
+}
+
+.twitter-widget {
+	margin-top: 25px;
+}
+
+.contributors-container {
+	display: flex;
+	flex-flow: row wrap;
+	width: 100%;
+	justify-content: space-between;
+	margin-top: 30px;
+}
+
+.contributor-box {
+	display: flex;
+	flex-flow: row wrap;
+	width: 30%;
+	background: rgb(245,250,230);
+	font-size: 0.9em;
+}
+
+.contributor-box img {
+	width: 60px;
+	height: 60px;
+}
+
+.contributor-box hgroup {
+	padding: 5px;
+}
+
+.orange {
+	color: rgb(250,130,60);
+}
+
+.bold {
+	font-weight: bold;
 }
