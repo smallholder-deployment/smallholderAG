@@ -1,7 +1,7 @@
 	<footer>
-		<p>
-			Copyright @ 2016
-		</p>
+		<div class="content">
+			<img src="<?php echo IMAGES.'/sponsors.svg'; ?>" alt="sponsors">
+		</div>
 		
 		<!--Bottom Green Line-->
 		<hr class="green-line">

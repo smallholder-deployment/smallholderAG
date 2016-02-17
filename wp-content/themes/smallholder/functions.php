@@ -2,6 +2,41 @@
 	define("TEMPLATE_PATH", get_bloginfo("stylesheet_directory"));
 	define("IMAGES", TEMPLATE_PATH."/images");
 
+	//Defining all nav options
+	function nav_menu_items() {
+		$options = [
+			"about",
+			"projects",
+			"publications",
+			"media",
+			"tools",
+			"blog"
+		];
+
+		return $options;
+	}
+
+	//Returns the nav options that do not have a defined icon
+	function without_icon() {
+		$options = [
+			"about",
+			"media",
+			"tools"
+		];
+
+		return $options;
+	}
+
+	//Returns the pages that do not have a side bar
+	function without_sidebar() {
+		$options = [
+			"projects",
+			"publications"			
+		];
+
+		return $options;
+	}
+
 	add_theme_support("nav-menus");
 	if (function_exists("register_nav_menus")){
 		register_nav_menus(
@@ -37,7 +72,7 @@
 	    ) );
 	}
 
-	// Initializing function named as "sample_widgets_init"
+	// Initializing functions
 	if (function_exists("register_sidebar")){
 		add_action( 'widgets_init', 'primary_widgets_init' );
 		add_action( 'widgets_init', 'twitter_widget_init' );
@@ -57,6 +92,21 @@
 		$words = explode(' ', $string, ($word_limit + 1));
 		if(count($words) > $word_limit)
 			array_pop($words);
+		
 		return implode(' ', $words);
 	} 
+
+	function string_limit_letters($string, $word_limit) {
+		$output = substr($string, 0, $word_limit);
+		if (strlen($string) > strlen($output))
+			$output .= "...";
+
+		return $output;
+	}
+
+	function pretty_url($string) {
+		return preg_replace('#^https?://#', '', $string);
+	}
+
+	add_image_size( "custom-thumbnail", 0, 110, true );
 ?>

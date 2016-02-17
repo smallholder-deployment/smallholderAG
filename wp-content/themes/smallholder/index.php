@@ -1,16 +1,26 @@
 <?php 
 	get_header(); 
 
-	$post = get_posts();
+	//$post = get_posts();
+
+	$current_page = strtolower(get_the_title());
+
+	if (in_array($current_page, without_sidebar())) {
+		$side_bar = false;
+	} else {
+		$side_bar = true;
+	}
 ?>	
 	<section class="main">
 		<div class="content <?php echo (!is_front_page()) ? 'content-post' : '' ?>">
-			<section class="<?php echo (is_front_page()) ? 'latest-news' : '' ?>">
+			<section class="<?php echo (is_front_page() || !$side_bar) ? 'latest-news' : '' ?>">
 <?php
 	if (have_posts() && !is_front_page()) {
 
 		while (have_posts()) { 
 			the_post();
+
+			if ( !in_array(strtolower( get_the_title()), nav_menu_items()) ) {
 ?>
 				<article class="width-100">
 					<hgroup class="width-100">
@@ -31,16 +41,17 @@
 					</hgroup>
 				</article>
 <?php
-		// dynamic_sidebar("primary-widget-area");
+			} else {
+				the_content();
+			}
 		}
 ?>
 			</section>
 <?php 
-		if (!is_front_page()){
-			get_sidebar(); 	
+		if ($side_bar) {
+			get_sidebar();
 		}
 ?>
-
 		</div>
 <?php
 
@@ -79,14 +90,14 @@
 				}
 			?>
 					<hgroup class="<?php echo (!has_post_thumbnail()) ? 'width-100' : ''; ?>">
-						<h1>
+						<h1 class="no-margin-top">
 							<a href="<?php the_permalink();?>"><?php the_title();?></a>
 						</h1>
 						<p class="date">
 							<?php the_time("F dS Y"); ?>
 						</p>
 						<?php 
-							$excerpt = string_limit_words(get_the_excerpt(),55);
+							$excerpt = string_limit_words(wp_strip_all_tags(get_the_content()),100);
 						?>
 						<p>
 							<?php echo $excerpt; ?>
@@ -108,8 +119,14 @@
 		<div class="container container-mark margin-top">
 			<div class="content">
 				<div class="container-title">
-					<h2>MORE NEWS</h2>
-					<h2>TWITTER</h2>
+					<div>
+						<img src="<?php echo IMAGES.'/more_news.svg'; ?>" alt="More News">
+						<p>MORE NEWS</p>	
+					</div>
+					<div>
+						<img src="<?php echo IMAGES.'/twitter_feed.svg'; ?>" alt="Twitter Feed">
+						<p>TWITTER</p>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -131,8 +148,8 @@
 					if (has_post_thumbnail()) {
 				?>
 						<div>
-						
-							<img src="<?php the_post_thumbnail_url(); ?>" alt="thumbnail" class="post-thumbnail">
+							<!-- <img src="<?php the_post_thumbnail_url('thumbnail'); ?>" alt="thumbnail" class="post-thumbnail"> -->
+							<?php the_post_thumbnail('thumbnail'); ?>
 						</div>
 				<?php
 					}
@@ -167,12 +184,14 @@
 			<div class="twitter">
 				<?php dynamic_sidebar("Twitter Area"); ?>
 			</div>
-		</div>
+		</div> <!--End of Header Info Bar-->
 
+		<!--Contributors-->
 		<div class="container container-mark margin-top">
 			<div class="content">
 				<div class="container-title">
-					<h2>CONTRIBUTORS</h2>
+					<img src="<?php echo IMAGES.'/contributors.svg'; ?>" alt="Contributors">
+					<p>CONTRIBUTORS</p>
 				</div>
 			</div>
 		</div>
@@ -201,10 +220,14 @@
 							<?php echo $user->first_name." ".$user->last_name; ?>
 						</p>
 						<p>
-							<?php echo $user_data->user_url; ?>
+							<a href="<?php echo $user_data->user_url; ?>" target="_blank">
+								<?php echo pretty_url($user_data->user_url); ?>
+							</a>
 						</p>
 						<p>
-							<?php echo $user_data->user_email; ?>
+							<a href="mailto:<?php echo $user_data->user_email; ?>">
+								<?php echo $user_data->user_email; ?>
+							</a>
 						</p>
 					</hgroup>
 				</div>
@@ -212,9 +235,10 @@
 			}
 		?>
 			</div>
-		</div>
+		</div> <!--End of contributos-->
+		
 <?php
 	}
 ?>	
-	</section> <!--Main section-->
+	</section> <!--End of Main section-->
 <?php get_footer(); ?>

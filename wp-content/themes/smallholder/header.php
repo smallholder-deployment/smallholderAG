@@ -41,8 +41,8 @@
 	if (!is_front_page() || get_header_image() == null) {
 ?>
 
-		<div class="container map">
-			<div class="content">
+		<div class="container">
+			<div class="content map">
 				<div class="info">
 				<?php
 					//Writes every line in the array and adds "-"
@@ -60,11 +60,11 @@
 				<?php
 					}
 				?>
-						<h1>
+						<div>
 							<a href="<?php bloginfo("url");?>">
 								<?php bloginfo("name");?>
 							</a>
-						</h1>
+						</div>
 				</div>
 			</div>
 		</div>
@@ -82,9 +82,15 @@
 						));
 					?>
 					<div class="social">
-						<img src="<?php echo IMAGES.'/twitter.png'?>" alt="twitter">
-						<img src="<?php echo IMAGES.'/facebook.png'?>" alt="twitter">
-						<img src="<?php echo IMAGES.'/instagram.png'?>" alt="instagram">
+						<a href="#" target="_blank">
+							<img src="<?php echo IMAGES.'/twitter.svg'; ?>" alt="twitter">
+						</a>
+						<a href="#" target="_blank">
+							<img src="<?php echo IMAGES.'/facebook.svg'; ?>" alt="facebook">
+						</a>
+						<a href="#" target="_blank">
+							<img src="<?php echo IMAGES.'/instagram.svg'; ?>" alt="instagram">
+						</a>
 					</div>
 				</nav>
 			</div>
@@ -94,8 +100,8 @@
 	if (is_front_page() && get_header_image() != null) {
 ?>
 
-		<div class="container map">
-			<div class="content">
+		<div class="container">
+			<div class="content map">
 				<div class="info text-center">
 			<?php
 				//Writes every line in the array and adds "-"
@@ -126,11 +132,50 @@
 			<?php
 				if (is_front_page()) {
 			?>
-					<h2>LATEST NEWS</h2>
+					<img src="<?php echo IMAGES.'/latest_news.svg'; ?>" alt="Latest News">
+					<p>LATEST NEWS</p>
 			<?php
 				} else {
+
+					$title = get_the_title();
+					$image = "";
+
+					if (!in_array(strtolower($title), without_icon())) {
+
+						switch ( strtolower($title) ) {
+							case "projects":
+								$image 	= IMAGES."/projects.svg";
+								$alt 		= "Projects";
+								break;
+							case "publications";
+								$image 	= IMAGES."/publications.svg";
+								$alt		= "Publications";
+								break;
+							default:
+								$image 	= IMAGES."/contributors.svg";
+								$alt		= "Blog";
+								$title 	= "Blog";
+								break;
+						}
+					}
+					
+					//Validation of categories
+					$category = get_the_category();
+					if (count($category) > 0) {
+						if ($category[0]->cat_name == "Projects") {
+							$image 	= IMAGES."/publications.svg";
+							$alt		= "Publications";
+							$title 	= "Projects";
+						}
+					}
+			
+					if ($image != "") {
 			?>
-					<h2><?php echo get_the_title(); ?></h2>
+					<img src="<?php echo $image; ?>" alt="<?php echo $alt; ?>">
+			<?php
+					}
+			?>
+					<p><?php echo $title; ?></p>
 			<?php
 				}
 			?>
