@@ -456,23 +456,23 @@ footer img {
 	margin-top: 0 !important;
 }
 
-.projects {
+.three-cols {
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: space-between;
 	width: 100%;
 }
 
-.projects article {
+.three-cols article {
 	width: 29%;
 	border-top: 3px solid rgb(248,130,59);
 }
 
-.projects hgroup {
+.three-cols hgroup {
 	background: rgb(245,250,230);
 }
 
-.projects-title {
+.three-cols-title {
 	background-image: url(images/headerBG.png);
 	background-repeat: no-repeat;
 	background-size: auto 50px;
@@ -483,7 +483,7 @@ footer img {
 	min-height: 45px;
 }
 
-.projects p {
+.three-cols p {
 	padding: 20px 20px 0 20px;
 	text-align: justify;
 }
@@ -504,4 +504,16 @@ footer img {
 	font-size: 0.9em;
 	color: rgb(248,130,59);
 	padding: 0 20px 20px 0;
+}
+
+.accordion {}
+
+.accordion h3 {
+	background: rgb(245,250,230);
+	border-top: 3px solid rgb(248,130,59);
+	padding: 10px;
+}
+
+.publications {
+	padding: 30px 0;
 }

@@ -1,6 +1,8 @@
 <?php
 	define("TEMPLATE_PATH", get_bloginfo("stylesheet_directory"));
 	define("IMAGES", TEMPLATE_PATH."/images");
+	define("JAVASCRIPT", TEMPLATE_PATH."/js");
+	define("CSS", TEMPLATE_PATH."/css");
 
 	//Defining all nav options
 	function nav_menu_items() {
