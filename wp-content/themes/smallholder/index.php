@@ -1,34 +1,22 @@
 <?php 
 	get_header(); 
-
-	//$post = get_posts();
-
-	$current_page = strtolower(get_the_title());
-
-	if (in_array($current_page, without_sidebar())) {
-		$side_bar = false;
-	} else {
-		$side_bar = true;
-	}
 ?>	
 	<section class="main">
 		<div class="content <?php echo (!is_front_page()) ? 'content-post' : '' ?>">
-			<section class="<?php echo (is_front_page() || !$side_bar) ? 'latest-news' : '' ?>">
+			<section class="<?php echo (is_front_page()) ? 'latest-news' : '' ?>">
 <?php
 	if (have_posts() && !is_front_page()) {
 
 		while (have_posts()) { 
 			the_post();
-
-			if ( !in_array(strtolower( get_the_title()), nav_menu_items()) ) {
 ?>
-				<article class="width-100">
+				<article class="width-100 margin-bottom">
 					<hgroup class="width-100">
 						<h1>
 							<a href="<?php the_permalink();?>"><?php the_title();?></a>
 						</h1>
-						<div class="date">
-							<p class="author">
+						<div class="date-box">
+							<p class="author-name">
 								<?php the_author(); ?>
 							</p>
 							<p>
@@ -41,23 +29,16 @@
 					</hgroup>
 				</article>
 <?php
-			} else {
-				the_content();
-			}
 		}
 ?>
 			</section>
-<?php 
-		if ($side_bar) {
-			get_sidebar();
-		}
-?>
+			<?php get_sidebar(); ?>
 		</div>
 <?php
 
 	/**
 	*
-	* Main page's logic
+	* Home page's logic
 	*
 	*/
 	} else if (have_posts()) {
@@ -83,7 +64,6 @@
 				if (has_post_thumbnail()) {
 			?>
 					<div>
-					
 						<img src="<?php the_post_thumbnail_url(); ?>" alt="thumbnail" class="post-thumbnail">
 					</div>
 			<?php
@@ -93,7 +73,7 @@
 						<h1 class="no-margin-top">
 							<a href="<?php the_permalink();?>"><?php the_title();?></a>
 						</h1>
-						<p class="date">
+						<p class="date-box">
 							<?php the_time("F dS Y"); ?>
 						</p>
 						<?php 
@@ -159,7 +139,7 @@
 							<h1>
 								<a href="<?php the_permalink();?>"><?php the_title();?></a>
 							</h1>
-							<p class="date">
+							<p class="date-box">
 								<?php the_time("F dS Y"); ?>
 							</p>
 							<?php 
@@ -212,13 +192,12 @@
 		?>
 				<div class="contributor-box">
 		<?php
-				//echo $user->first_name." ".$user->last_name;
 					echo get_avatar($user->ID);
 		?>		
 					<hgroup>
-						<p class="orange bold">
+						<a href="<?php echo get_author_posts_url($user->ID); ?>" class="orange bold">
 							<?php echo $user->first_name." ".$user->last_name; ?>
-						</p>
+						</a>
 						<p>
 							<a href="<?php echo $user_data->user_url; ?>" target="_blank">
 								<?php echo pretty_url($user_data->user_url); ?>
@@ -237,6 +216,11 @@
 			</div>
 		</div> <!--End of contributos-->
 		
+<?php
+	} else { //No data found
+?>
+			</section>
+		</div>	
 <?php
 	}
 ?>	

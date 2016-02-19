@@ -137,41 +137,16 @@
 			<?php
 				} else {
 
-					$title = get_the_title();
-					$image = "";
-
-					if (!in_array(strtolower($title), without_icon())) {
-
-						switch ( strtolower($title) ) {
-							case "projects":
-								$image 	= IMAGES."/projects.svg";
-								$alt 		= "Projects";
-								break;
-							case "publications";
-								$image 	= IMAGES."/publications.svg";
-								$alt		= "Publications";
-								break;
-							default:
-								$image 	= IMAGES."/contributors.svg";
-								$alt		= "Blog";
-								$title 	= "Blog";
-								break;
-						}
-					}
+					$title = ( get_field("page-title") == "" ) ? "Blog" : get_field("page-title");
+					$image = get_field("page-icon");
 					
-					//Validation of categories
-					$category = get_the_category();
-					if (count($category) > 0) {
-						if ($category[0]->cat_name == "Projects") {
-							$image 	= IMAGES."/publications.svg";
-							$alt		= "Publications";
-							$title 	= "Projects";
-						}
+					if ($title == "Blog") {
+						$image = IMAGES."/contributors.svg";
 					}
-			
+
 					if ($image != "") {
 			?>
-					<img src="<?php echo $image; ?>" alt="<?php echo $alt; ?>">
+					<img src="<?php echo $image; ?>" alt="icon">
 			<?php
 					}
 			?>

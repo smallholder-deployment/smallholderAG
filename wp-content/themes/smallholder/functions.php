@@ -3,42 +3,7 @@
 	define("IMAGES", TEMPLATE_PATH."/images");
 	define("JAVASCRIPT", TEMPLATE_PATH."/js");
 	define("CSS", TEMPLATE_PATH."/css");
-
-	//Defining all nav options
-	function nav_menu_items() {
-		$options = [
-			"about",
-			"projects",
-			"publications",
-			"media",
-			"tools",
-			"blog"
-		];
-
-		return $options;
-	}
-
-	//Returns the nav options that do not have a defined icon
-	function without_icon() {
-		$options = [
-			"about",
-			"media",
-			"tools"
-		];
-
-		return $options;
-	}
-
-	//Returns the pages that do not have a side bar
-	function without_sidebar() {
-		$options = [
-			"projects",
-			"publications"			
-		];
-
-		return $options;
-	}
-
+	
 	add_theme_support("nav-menus");
 	if (function_exists("register_nav_menus")){
 		register_nav_menus(
@@ -79,16 +44,13 @@
 		add_action( 'widgets_init', 'primary_widgets_init' );
 		add_action( 'widgets_init', 'twitter_widget_init' );
 	}
-
 	
 	$defaults = array(
 		'default-image'=> ''
 	);
 	add_theme_support("custom-header", $defaults);
 
-
 	add_theme_support("post-thumbnails");
-
 
 	function string_limit_words($string, $word_limit) {
 		$words = explode(' ', $string, ($word_limit + 1));
@@ -111,4 +73,11 @@
 	}
 
 	add_image_size( "custom-thumbnail", 0, 110, true );
+
+	//Allow WP to upload SVG images
+	function cc_mime_types($mimes) {
+		$mimes["svg"] = "image/svg+xml";
+		return $mimes;
+	}
+	add_filter("upload_mimes", "cc_mime_types");
 ?>

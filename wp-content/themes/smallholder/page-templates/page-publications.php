@@ -71,16 +71,4 @@ Template Name: Publications Page
 	</div>
 </section>
 
-<script type="text/javascript" src="<?php echo JAVASCRIPT.'/jquery.js'; ?>"></script>
-<script type="text/javascript" src="<?php echo JAVASCRIPT.'/jquery-ui.js'; ?>"></script>
-<script type="text/javascript">
-	$(function() {
-		$( "#accordion" ).accordion({
-			"collapsible": true,
-			"active": false,
-			heightStyle: "content"
-		});
-	});
-</script>
-
 <?php get_footer(); ?>
