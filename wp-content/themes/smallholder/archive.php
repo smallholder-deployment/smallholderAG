@@ -10,9 +10,9 @@
 ?>
 			<article>
 				<hgroup>
-					<h1>
+					<h2 class="title-label">
 						<a href="<?php the_permalink();?>"><?php the_title();?></a>
-					</h1>
+					</h2>
 					<div class="date-box">
 						<p class="author-name">
 							<?php the_author(); ?>

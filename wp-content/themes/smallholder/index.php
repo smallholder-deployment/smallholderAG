@@ -64,16 +64,22 @@
 				if (has_post_thumbnail()) {
 			?>
 					<div>
+						<h1 class="no-margin-top small-control">
+							<a href="<?php the_permalink();?>"><?php the_title();?></a>
+						</h1>
+						<p class="date-box small-control">
+							<?php the_time("F dS Y"); ?>
+						</p>
 						<img src="<?php the_post_thumbnail_url(); ?>" alt="thumbnail" class="post-thumbnail">
 					</div>
 			<?php
 				}
 			?>
 					<hgroup class="<?php echo (!has_post_thumbnail()) ? 'width-100' : ''; ?>">
-						<h1 class="no-margin-top">
+						<h1 class="no-margin-top <?php echo (has_post_thumbnail()) ? 'large-control' : ''; ?>">
 							<a href="<?php the_permalink();?>"><?php the_title();?></a>
 						</h1>
-						<p class="date-box">
+						<p class="date-box <?php echo (has_post_thumbnail()) ? 'large-control' : ''; ?>">
 							<?php the_time("F dS Y"); ?>
 						</p>
 						<?php 
@@ -103,7 +109,7 @@
 						<img src="<?php echo IMAGES.'/more_news.svg'; ?>" alt="More News">
 						<p>MORE NEWS</p>	
 					</div>
-					<div>
+					<div class="large-control">
 						<img src="<?php echo IMAGES.'/twitter_feed.svg'; ?>" alt="Twitter Feed">
 						<p>TWITTER</p>
 					</div>
@@ -128,8 +134,12 @@
 					if (has_post_thumbnail()) {
 				?>
 						<div>
-							<!-- <img src="<?php the_post_thumbnail_url('thumbnail'); ?>" alt="thumbnail" class="post-thumbnail"> -->
-							<?php the_post_thumbnail('thumbnail'); ?>
+							<div class="width-100 small-control-480">
+								<?php the_post_thumbnail(); ?>
+							</div>
+							<div class="width-100 large-control-480">
+								<?php the_post_thumbnail("thumbnail"); ?>
+							</div>
 						</div>
 				<?php
 					}
@@ -161,10 +171,28 @@
 	?>
 				</section>
 			</div>
-			<div class="twitter">
+			<div class="twitter large-control">
 				<?php dynamic_sidebar("Twitter Area"); ?>
 			</div>
 		</div> <!--End of Header Info Bar-->
+
+		<!--Twitter section in mobile devices-->
+		<div class="container container-mark margin-top small-control">
+			<div class="content">
+				<div class="container-title">
+					<div class="large-small">
+						<img src="<?php echo IMAGES.'/twitter_feed.svg'; ?>" alt="Twitter Feed">
+						<p>TWITTER</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="content">
+			<div class="twitter small-control">
+				<?php dynamic_sidebar("Twitter Area"); ?>
+			</div>
+		</div> <!--End of twitter in mobile devices-->
+
 
 		<!--Contributors-->
 		<div class="container container-mark margin-top">

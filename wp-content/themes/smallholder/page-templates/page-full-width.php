@@ -8,7 +8,7 @@ Template Name: Full Width
 
 <section class="main">
 	<div class="content">
-		<section class="width-100">
+		<section class="width-100 div-100">
 			<?php the_content(); ?>
 		</section>
 	</div>
