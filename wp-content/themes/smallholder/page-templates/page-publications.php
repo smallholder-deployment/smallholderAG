@@ -31,7 +31,7 @@ Template Name: Publications Page
 
 			foreach ($posts as $post) {
 		?>
-					<article>
+					<article class="bg-color publications-box">
 						<hgroup>
 							<div class="three-cols-title">
 								<a href="<?php the_permalink();?>">
@@ -53,12 +53,12 @@ Template Name: Publications Page
 									echo $excerpt;
 								?>
 							</p>
-							<div class="read-more">
-								<a href="<?php the_permalink();?>">
-									read more >
-								</a>	
-							</div>
 						</hgroup>
+						<div class="read-more publications-read-more">
+							<a href="<?php the_permalink();?>">
+								read more >
+							</a>	
+						</div>
 					</article>
 		<?php
 			}

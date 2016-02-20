@@ -4,7 +4,7 @@
  */
 
 ?>
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> >
+<article id="post-<?php the_ID(); ?>" class="margin-bottom bg-color project-box">
 	<hgroup>
 		<div class="three-cols-title">
 			<a href="<?php the_permalink();?>">
@@ -28,15 +28,21 @@
 				echo $excerpt;
 			?>
 		</p>
-		<div class="read-more">
-			<a href="<?php the_permalink();?>" class="padding-bottom-10">
-				read more >
-			</a>	
-		</div>
-		<div class="project-web-site">
-			<a href="http://<?php the_field('project-web-site'); ?>" target="_blank" class="bold">
-				<?php the_field("project-web-site"); ?>
-			</a>
-		</div>
 	</hgroup>
+	<div class="read-more project-web-site">
+		<a href="<?php the_permalink();?>" class="padding-bottom-10">
+			read more >
+		</a>	
+	</div>
+<?php
+	if ( function_exists('the_field') ) {
+?>
+	<div class="project-web-site">
+		<a href="http://<?php the_field('project-web-site'); ?>" target="_blank" class="bold">
+			<?php the_field("project-web-site"); ?>
+		</a>
+	</div>
+<?php
+	}
+?>
 </article>

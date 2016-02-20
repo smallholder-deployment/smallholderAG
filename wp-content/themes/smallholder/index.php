@@ -12,7 +12,7 @@
 ?>
 				<article class="width-100 margin-bottom">
 					<hgroup class="width-100">
-						<h1>
+						<h1 class="title-label">
 							<a href="<?php the_permalink();?>"><?php the_title();?></a>
 						</h1>
 						<div class="date-box">
@@ -23,6 +23,15 @@
 								<?php the_time("F dS Y"); ?>
 							</p>
 						</div>
+				<?php
+					if ( has_post_thumbnail() ) {
+				?>
+						<div class="archive-thumbnail center-content">
+							<img src="<?php the_post_thumbnail_url(); ?>" alt="thumbnail">
+						</div>
+				<?php
+					}
+				?>
 						<div class="width-100">
 							<?php the_content(); ?>
 						</div>
@@ -63,7 +72,7 @@
 			<?php
 				if (has_post_thumbnail()) {
 			?>
-					<div>
+					<div class="margin-thumbnail">
 						<h1 class="no-margin-top small-control">
 							<a href="<?php the_permalink();?>"><?php the_title();?></a>
 						</h1>
@@ -102,7 +111,7 @@
 		</div>
 		
 		<!--Header Info Bar-->
-		<div class="container container-mark margin-top">
+		<div class="container container-mark margins">
 			<div class="content">
 				<div class="container-title">
 					<div>
@@ -177,7 +186,7 @@
 		</div> <!--End of Header Info Bar-->
 
 		<!--Twitter section in mobile devices-->
-		<div class="container container-mark margin-top small-control">
+		<div class="container container-mark margins small-control">
 			<div class="content">
 				<div class="container-title">
 					<div class="large-small">
@@ -195,7 +204,7 @@
 
 
 		<!--Contributors-->
-		<div class="container container-mark margin-top">
+		<div class="container container-mark margins">
 			<div class="content">
 				<div class="container-title">
 					<img src="<?php echo IMAGES.'/contributors.svg'; ?>" alt="Contributors">
@@ -208,7 +217,7 @@
 			<div class="contributors-container">
 		<?php
 			 $args = array(
-				'role'         => 'contributor',
+				'role'         => 'editor',
 				'orderby'      => 'login',
 				'order'        => 'ASC',
 				'number'       => ''

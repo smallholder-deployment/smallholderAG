@@ -17,12 +17,13 @@
 	function primary_widgets_init() {
 	    register_sidebar( array(
 	        "name" 			=> __("Primary Sidebar", "primary-sidebar"),
-	        "id" 			=> "primary-widget-area",
+	        "id" 				=> "primary-widget-area",
 	        "description"	=> __("The primary widget area", "dir"),
-	        "before_widget" => "<div class='custom-widget'>",
-	        "after_widget" 	=> "</div>",
-	        "before_title" 	=> "<h2 class='widget-title'>",
-	        "after_title" 	=> "</h2>",
+	        "class"			=> '',
+	        "before_widget" => '<div class="custom-widget">',
+	        "after_widget" 	=> '</div>',
+	        "before_title" 	=> '<h2 class="widget-title">',
+	        "after_title" 	=> '</h2>',
 	    ) );
 	}
 
@@ -30,12 +31,13 @@
 	function twitter_widget_init() {
 	    register_sidebar( array(
 	        "name" 			=> __("Twitter Area", "twitter-area"),
-	        "id" 			=> "twitter-widget-area",
+	        "id" 				=> "twitter-widget-area",
 	        "description"	=> __("The twitter widget area", "dir"),
-	        "before_widget" => "<div class='twitter-widget'>",
-	        "after_widget" 	=> "</div>",
-	        "before_title" 	=> "<h2 class='twitter-title no-display'>",
-	        "after_title" 	=> "</h2>",
+	        "class"			=> '',
+	        "before_widget" => '<div class="twitter-widget">',
+	        "after_widget" 	=> '</div>',
+	        "before_title" 	=> '<h2 class="twitter-title no-display">',
+	        "after_title" 	=> '</h2>',
 	    ) );
 	}
 

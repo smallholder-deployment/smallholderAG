@@ -11,9 +11,12 @@
 </head>
 <body <?php body_class(); ?>>
 	<header>
-		<?php
-			if (is_front_page() && get_header_image() != null) {
-		?>
+		<!--Top Green Line-->
+		<hr class="green-line">
+		
+<?php
+	if (is_front_page() && get_header_image() != null) {
+?>
 		<div class="content">
 			<div class="logo">
 				<img src="<?php header_image(); ?>">
@@ -22,18 +25,9 @@
 				</a>
 			</div>
 		</div>
-		<?php
-			} else {
-		?>
-		
-		<!--Top Green Line-->
-		<hr class="green-line">
-
-		<?php				
-			}
-		?>
-	
 <?php
+	}
+
 	//It's used in the description line by line splits by "-"
 	$description = explode("-", get_bloginfo("description"));
 	$cont = 0;
@@ -41,9 +35,9 @@
 	if (!is_front_page() || get_header_image() == null) {
 ?>
 
-		<div class="container">
+		<div class="container no-border">
 			<div class="content map">
-				<div class="info">
+				<div class="info info-i">
 				<?php
 					//Writes every line in the array and adds "-"
 					foreach ($description as $value) {
@@ -136,10 +130,15 @@
 					<p>LATEST NEWS</p>
 			<?php
 				} else {
-
-					$title = ( get_field("page-title") == "" ) ? "Blog" : get_field("page-title");
-					$image = get_field("page-icon");
 					
+					if ( function_exists('get_field') ) {
+						$title = ( get_field("page-title") == "" ) ? "Blog" : get_field("page-title");
+						$image = get_field("page-icon");	
+					} else {
+						$title = '';
+						$image = '';
+					}
+
 					if ($title == "Blog") {
 						$image = IMAGES."/contributors.svg";
 					}
