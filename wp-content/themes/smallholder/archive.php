@@ -8,7 +8,7 @@
 		while ( have_posts() ) {
 			the_post();
 ?>
-			<article class="margin-bottom">
+			<article class="margin-bottom width-100">
 				<hgroup>
 					<h2 class="title-label">
 						<a href="<?php the_permalink();?>"><?php the_title();?></a>

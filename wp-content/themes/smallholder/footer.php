@@ -1,5 +1,5 @@
 	<footer>
-		<div class="content">
+		<div class="content footer-container">
 			<img src="<?php echo IMAGES.'/sponsors.svg'; ?>" alt="sponsors">
 		</div>
 		
@@ -23,4 +23,4 @@
 
 	<?php wp_footer(); ?>
 </body>
-</hmtl>
+</html>

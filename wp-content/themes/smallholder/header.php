@@ -18,8 +18,13 @@
 	if (is_front_page() && get_header_image() != null) {
 ?>
 		<div class="content">
-			<div class="logo">
-				<img src="<?php header_image(); ?>">
+			<div class="logo" style="background-image: url(<?php header_image(); ?>); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+				<!-- <img src="<?php //header_image(); ?>"> -->
+				<a href="<?php bloginfo("url");?>" class="large-control-480">
+					<?php bloginfo("name");?>
+				</a>
+			</div>
+			<div class="logo-title small-control-480">
 				<a href="<?php bloginfo("url");?>">
 					<?php bloginfo("name");?>
 				</a>

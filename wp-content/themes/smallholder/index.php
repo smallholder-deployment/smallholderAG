@@ -72,7 +72,7 @@
 			<?php
 				if (has_post_thumbnail()) {
 			?>
-					<div class="margin-thumbnail">
+					<div class="margin-thumbnail center-image">
 						<h1 class="no-margin-top small-control">
 							<a href="<?php the_permalink();?>"><?php the_title();?></a>
 						</h1>
