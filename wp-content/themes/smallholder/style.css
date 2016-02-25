@@ -43,6 +43,7 @@ html {
 body,
 header,
 aside,
+.main,
 .content,
 .info,
 .latest-news,
@@ -70,7 +71,6 @@ footer,
 .social,
 .container-title,
 .container-title div,
-.main,
 .date-box,
 .first-post,
 .content-post,
@@ -80,7 +80,8 @@ footer,
 .three-cols,
 .read-more,
 .large-control,
-.logo-title {
+.logo-title,
+.publications-content {
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -moz-box;
@@ -299,6 +300,8 @@ header a:hover {
 .social img {
 	width: 25px;
 	height: 25px;
+	top: 3px;
+	position: relative;
 }
 
 .container-title {
@@ -404,6 +407,7 @@ footer img {
 	background-size: auto 50px;
 	background-position: top center;
 	margin-bottom: 3px;
+	font-size: 1.2em;
 }
 
 .map {
@@ -574,7 +578,6 @@ footer img {
 
 .three-cols p {
 	padding: 20px 20px 0 20px;
-	text-align: justify;
 }
 
 .center-content,
@@ -615,6 +618,7 @@ footer img {
 	border-top: 3px solid rgb(248,130,59);
 	padding: 10px;
 	cursor: pointer;
+	outline: none;
 }
 
 .publications {
@@ -680,6 +684,7 @@ footer img {
 .publications-box {
 	margin-top: 60px !important;
 	margin-bottom: 0 !important;
+	border-top: 3px solid rgb(202,215,124) !important;
 }
 
 .project-box > hgroup > p {
@@ -690,15 +695,35 @@ footer img {
 	margin-bottom: 40px;
 }
 
+.publications-title {
+	text-align: center;
+	padding: 10px 0 !important;
+	font-size: 1.2em;
+	min-height: 45px;
+}
+
+.publications-title a {
+	color: rgb(248,130,59);
+}
+
+.publications-content div {
+	width: 30%;
+	padding: 0 10px 10px 10px;
+}
+
+.publications-content p {
+	width: 70%;
+	padding: 0 5px 15px 0 !important;
+	line-height: 105%;
+}
+
 .read-more.project-web-site {
 	position: absolute;
 	bottom: 20px;
 }
 
-.read-more.publications-read-more {
-	position: absolute;
-	bottom: 0;
-	padding-bottom: 20px;
+.single-post .container-title * {
+	visibility: hidden;
 }
 
 
@@ -782,6 +807,19 @@ footer img {
 	.twitter {
 		width: 60%;
 		margin: 0 auto;
+	}
+
+	.title-page {
+		text-align: center;
+		margin: 25px 0;
+	}
+
+	.description-control {
+		display: none !important;
+	}
+
+	.info.info-i {
+		margin: 0 !important;
 	}
 }
 

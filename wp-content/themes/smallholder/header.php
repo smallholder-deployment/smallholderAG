@@ -47,7 +47,7 @@
 					//Writes every line in the array and adds "-"
 					foreach ($description as $value) {
 				?>
-						<p>
+						<p class="description-control">
 							<?php 
 								if ($cont > 0) {
 									echo "-";
@@ -59,7 +59,7 @@
 				<?php
 					}
 				?>
-						<div>
+						<div class="title-page">
 							<a href="<?php bloginfo("url");?>">
 								<?php bloginfo("name");?>
 							</a>
@@ -137,15 +137,55 @@
 				} else {
 					
 					if ( function_exists('get_field') ) {
-						$title = ( get_field("page-title") == "" ) ? "Blog" : get_field("page-title");
+						$title = get_field("page-title");
 						$image = get_field("page-icon");	
 					} else {
 						$title = '';
 						$image = '';
 					}
 
-					if ($title == "Blog") {
+					//Get author name as title
+					if ($title == "") {
 						$image = IMAGES."/contributors.svg";
+						$author = get_userdata(get_query_var("author"));
+						if ($author != null) {
+							$title = $author->first_name ." ". $author->last_name;
+						}
+					}
+
+					//Get category name as title
+					if ($title == "") {
+						$category = get_category_by_slug(get_query_var("category_name"));
+						if ($category != null) {
+							$title = $category->cat_name;
+						}
+					}
+
+					//Get tag as title
+					if ($title == "") {
+						$title = get_query_var("tag");
+					}
+
+					//Get date as title
+					if ($title == "") {
+						
+						$date = get_query_var("year");
+
+						if ($date != "") {
+							//Concatenating month if exists
+							if (get_query_var("monthnum") != "") {
+								$date .= "-" . get_query_var("monthnum");
+								
+								$title = date("F Y", strtotime($date));
+							} else {
+								$title = date("Y", strtotime($date));
+							}
+						}
+					}
+
+					//Default Blog as title
+					if ($title == "") {
+						$title = "Blog";
 					}
 
 					if ($image != "") {

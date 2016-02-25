@@ -4,16 +4,25 @@ Template Name: Publications Page
 */
 	get_header(); 
 
-	$id_cat = get_cat_ID("Publications"); //Category's ID
-	$cat_args = array(
-      "orderby" 	=> "id",
-      "hide_empty"=> 0,
-      "child_of" 	=> $id_cat //Child of Publications Category 
-  );
-  $categories = get_categories($cat_args);
+	$parent_cat = "";
+
+	if (function_exists("get_field")) {
+		$parent_cat = get_field("parent-category");
+
+		$id_cat = get_cat_ID($parent_cat); //Category's ID
+		$cat_args = array(
+			"orderby" 	=> "id",
+	      "hide_empty"=> 0,
+	      "child_of" 	=> $id_cat //Child of Publications Category 
+	  	);
+	  	$categories = get_categories($cat_args);
+	}
 ?>
 
 <section class="main">
+<?php
+	if ($parent_cat != "") {
+?>
 	<div class="content">
 		<div id="accordion" class="accordion">
 
@@ -33,32 +42,29 @@ Template Name: Publications Page
 		?>
 					<article class="bg-color publications-box">
 						<hgroup>
-							<div class="three-cols-title">
+							<div class="publications-title">
 								<a href="<?php the_permalink();?>">
 									<?php echo string_limit_letters($post->post_title, 50); ?>
 								</a>
 							</div>
+							<div class="publications-content">
 					<?php
 						if (has_post_thumbnail()) {
 					?>
-							<div class="center-content">
-								<?php the_post_thumbnail("custom-thumbnail"); ?>
-							</div>
+								<div>
+									<?php the_post_thumbnail("custom-thumbnail"); ?>
+								</div>
 					<?php
 						}
 					?>
 							<p>
 								<?php 
-									$excerpt = string_limit_letters(wp_strip_all_tags($post->post_content),280);
+									$excerpt = string_limit_letters(wp_strip_all_tags($post->post_content),100);
 									echo $excerpt;
 								?>
 							</p>
+							</div>
 						</hgroup>
-						<div class="read-more publications-read-more">
-							<a href="<?php the_permalink();?>">
-								read more >
-							</a>	
-						</div>
 					</article>
 		<?php
 			}
@@ -69,6 +75,9 @@ Template Name: Publications Page
 	?>
 		</div>
 	</div>
+<?php
+	}
+?>
 </section>
 
 <?php get_footer(); ?>
