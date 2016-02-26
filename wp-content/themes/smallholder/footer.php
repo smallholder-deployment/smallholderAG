@@ -21,6 +21,21 @@
 		});
 	</script>
 
+	<script type="text/javascript">
+		$(function() {
+			var browser = window.navigator.userAgent;
+			if (browser.indexOf("Edge/") > 0) {
+				$(".textwidget").each(function() {
+					$(this).addClass("margin-edge");
+				});
+			} else if (!(browser.indexOf("WebKit/") > 0)) {
+				$(".textwidget").each(function() {
+					$(this).addClass("margin-browsers");
+				});
+			}
+		});
+	</script>
+
 	<?php wp_footer(); ?>
 </body>
 </html>

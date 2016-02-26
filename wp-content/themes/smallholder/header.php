@@ -40,7 +40,7 @@
 	if (!is_front_page() || get_header_image() == null) {
 ?>
 
-		<div class="container no-border">
+		<div class="container no-border bg-color">
 			<div class="content map">
 				<div class="info info-i">
 				<?php
@@ -70,25 +70,40 @@
 <?php
 	}
 ?>
-		<div class="container">
+		<div class="container <?php echo (!is_front_page() ||
+													 get_header_image() == null) ? 'bg-color' : '' ;?>">
 			<div class="content">
 				<nav>
 					<?php 
+						$clases = "menu-nav";
+
+						if (!is_front_page() || get_header_image() == null) {
+							$clases .= " internal-nav";
+
+							$tw_img = "fb";
+							$fb_img = "twt";
+							$ig_img = "ig";
+						} else {
+							$tw_img = "twitter";
+							$fb_img = "facebook";
+							$ig_img = "instagram";
+						}
+
 						wp_nav_menu(array(
-							"menu"=>"Main",
-							"menu_class"=>"menu-nav",
-							"container_class"=>"menu-nav"
+							"menu"				=> "Main",
+							"menu_class"		=> $clases,
+							"container_class"	=> "menu-nav"
 						));
 					?>
 					<div class="social">
 						<a href="#" target="_blank">
-							<img src="<?php echo IMAGES.'/twitter.svg'; ?>" alt="twitter">
+							<img src="<?php echo IMAGES.'/'.$tw_img.'.svg'; ?>" alt="twitter">
 						</a>
 						<a href="#" target="_blank">
-							<img src="<?php echo IMAGES.'/facebook.svg'; ?>" alt="facebook">
+							<img src="<?php echo IMAGES.'/'.$fb_img.'.svg'; ?>" alt="facebook">
 						</a>
 						<a href="#" target="_blank">
-							<img src="<?php echo IMAGES.'/instagram.svg'; ?>" alt="instagram">
+							<img src="<?php echo IMAGES.'/'.$ig_img.'.svg'; ?>" alt="instagram">
 						</a>
 					</div>
 				</nav>
@@ -99,7 +114,7 @@
 	if (is_front_page() && get_header_image() != null) {
 ?>
 
-		<div class="container">
+		<div class="container bg-color">
 			<div class="content map">
 				<div class="info text-center">
 			<?php

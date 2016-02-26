@@ -52,16 +52,20 @@ Template Name: Publications Page
 						if (has_post_thumbnail()) {
 					?>
 								<div>
-									<?php the_post_thumbnail("custom-thumbnail"); ?>
+									<a href="<?php the_permalink();?>">
+										<?php the_post_thumbnail("custom-thumbnail"); ?>
+									</a>
 								</div>
 					<?php
 						}
 					?>
 							<p>
-								<?php 
-									$excerpt = string_limit_letters(wp_strip_all_tags($post->post_content),100);
-									echo $excerpt;
-								?>
+								<a href="<?php the_permalink();?>">
+									<?php 
+										$excerpt = string_limit_letters(wp_strip_all_tags($post->post_content),100);
+										echo $excerpt;
+									?>
+								</a>
 							</p>
 							</div>
 						</hgroup>
