@@ -134,6 +134,23 @@
 				}
 			?>
 				</div>
+		<?php
+
+			//Custom button in home page
+			if (function_exists("get_custom")) {
+
+				$btn_label = get_custom("home_button_label");
+				$btn_link  = get_custom("home_button_link");
+
+				if ($btn_label && $btn_link) {
+		?>
+					<div class="custom-btn">
+						<a href="<?php echo $btn_link;?>"><?php echo $btn_label;?></a>
+					</div>
+		<?php	
+				}
+			}
+		?>
 			</div>
 		</div>
 <?php

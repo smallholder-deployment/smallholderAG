@@ -5,6 +5,9 @@
 		
 		<!--Bottom Green Line-->
 		<hr class="green-line">
+		<div class="theme-by">
+			Theme by <a href="http://www.bkdf.nyc" target="_blank">www.bkdf.nyc</a>
+		</div>
 	</footer>
 	
 	<script type="text/javascript" src="<?php echo JAVASCRIPT.'/jquery.min.js'; ?>"></script>

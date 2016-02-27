@@ -62,7 +62,7 @@ Template Name: Publications Page
 							<p>
 								<a href="<?php the_permalink();?>">
 									<?php 
-										$excerpt = string_limit_letters(wp_strip_all_tags($post->post_content),100);
+										$excerpt = string_limit_letters(wp_strip_all_tags($post->post_content),150);
 										echo $excerpt;
 									?>
 								</a>
