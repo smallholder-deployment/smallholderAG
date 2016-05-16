@@ -29,7 +29,10 @@ Template Name: Publications Page
 	<?php
 		foreach ($categories as $cat) {
 	?>
-			<h3><?php echo $cat->name; ?></h3>
+			<div class="accordion-header">
+				<img src="<?php echo IMAGES.'/plus.svg'; ?>">
+				<h3><?php echo $cat->name; ?></h3>
+			</div>
 			<div class="three-cols publications">
 		<?php
 			$post_args = array(

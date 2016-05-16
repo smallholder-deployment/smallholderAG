@@ -6,36 +6,37 @@
 		<!--Bottom Green Line-->
 		<hr class="green-line">
 		<div class="theme-by">
-			Theme by <a href="http://www.bkdf.nyc" target="_blank">www.bkdf.nyc</a>
+			<a href="http://www.bkdf.nyc" target="_blank">Theme by www.bkdf.nyc</a>
 		</div>
 	</footer>
 	
 	<script type="text/javascript" src="<?php echo JAVASCRIPT.'/jquery.min.js'; ?>"></script>
 	<script type="text/javascript" src="<?php echo JAVASCRIPT.'/jquery-ui.min.js'; ?>"></script>
-	
-	<!-- Accordion on publications' page -->
-	<script type="text/javascript">
-		$(function() {
-			$( "#accordion" ).accordion({
-				"collapsible": true,
-				"active": false,
-				"heightStyle": "content"
-			});
-		});
-	</script>
 
 	<script type="text/javascript">
-		$(function() {
+		function initEvents() {
+			// Accordion on publications' page
+			$( "#accordion" ).accordion({
+				"collapsible": true,
+				"active": 0,
+				"heightStyle": "content"
+			});
+
 			var browser = window.navigator.userAgent;
 			if (browser.indexOf("Edge/") > 0) {
 				$(".textwidget").each(function() {
 					$(this).addClass("margin-edge");
 				});
-			} else if (!(browser.indexOf("WebKit/") > 0)) {
+			}
+			else if (!(browser.indexOf("WebKit/") > 0)) {
 				$(".textwidget").each(function() {
 					$(this).addClass("margin-browsers");
 				});
 			}
+		}
+
+		$(function() {
+			initEvents();
 		});
 	</script>
 
