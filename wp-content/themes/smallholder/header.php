@@ -1,106 +1,237 @@
-<?php
-/**
- * The header for our theme.
- *
- * This is the template that displays all of the <head> section and everything up until <div id="content">
- *
- * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
- *
- * @package popper
- */
-
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
-<meta charset="<?php bloginfo( 'charset' ); ?>">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="profile" href="http://gmpg.org/xfn/11">
-<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
-
-<?php wp_head(); ?>
+	<meta charset="<?php bloginfo('charset'); ?>">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title><?php bloginfo("name");?> <?php wp_title();?></title>
+	<link rel="stylesheet" type="text/css" href="<?php echo CSS.'/normalize.css'; ?>">
+	<link rel="stylesheet" type="text/css" href="<?php bloginfo('stylesheet_url'); ?>">
+	<link rel="pingback" href="<?php bloginfo('pingback_url');?>">
+	<?php wp_head(); ?>
 </head>
-
 <body <?php body_class(); ?>>
+	<header>
+		<!--Top Green Line-->
+		<hr class="green-line">
+		
 <?php
-if ( is_page_template( 'page-templates/page-sidebar-right.php' ) ) { ?>
-    <div id="page" class="hfeed site sidebar-right">
+	if (is_front_page() && get_header_image() != null) {
+?>
+		<div class="content">
+			<div class="logo" style="background-image: url(<?php header_image(); ?>); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+				<!-- <img src="<?php //header_image(); ?>"> -->
+				<a href="<?php bloginfo("url");?>" class="large-control-480">
+					<?php bloginfo("name");?>
+				</a>
+			</div>
+			<div class="logo-title small-control-480">
+				<a href="<?php bloginfo("url");?>">
+					<?php bloginfo("name");?>
+				</a>
+			</div>
+		</div>
 <?php
-} elseif ( is_page_template( 'page-templates/page-sidebar-left.php' ) ) { ?>
-    <div id="page" class="hfeed site sidebar-left">
-<?php
-} else { ?>
-    <div id="page" class="hfeed site <?php echo get_theme_mod( 'layout_setting', 'no-sidebar' ); ?>">
-<?php
-}
+	}
+
+	//It's used in the description line by line splits by "-"
+	$description = explode("-", get_bloginfo("description"));
+	$cont = 0;
+
+	if (!is_front_page() || get_header_image() == null) {
 ?>
 
-	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'popper' ); ?></a>
+		<div class="container no-border bg-color">
+			<div class="content map">
+				<div class="info info-i">
+				<?php
+					//Writes every line in the array and adds "-"
+					foreach ($description as $value) {
+				?>
+						<p class="description-control">
+							<?php 
+								if ($cont > 0) {
+									echo "-";
+								}
+								echo $value; 
+								$cont++;
+							?>
+						</p>
+				<?php
+					}
+				?>
+						<div class="title-page">
+							<a href="<?php bloginfo("url");?>">
+								<?php bloginfo("name");?>
+							</a>
+						</div>
+				</div>
+			</div>
+		</div>
+<?php
+	}
+?>
+		<div class="container <?php echo (!is_front_page() ||
+													 get_header_image() == null) ? 'bg-color' : '' ;?>">
+			<div class="content">
+				<nav>
+					<?php 
+						$clases = "menu-nav";
 
+						if (!is_front_page() || get_header_image() == null) {
+							$clases .= " internal-nav";
 
-	<?php
-		if ( get_header_image() ) { ?>
-			<header id="masthead" class="site-header header-background-image" style="background-image: url(<?php echo get_header_image(); ?>) " role="banner">
-		<?php } else { ?>
-			<header id="masthead" class="site-header" role="banner">
-		<?php }
-		?>
-	<?php
-	// <header id="masthead" class="site-header" role="banner">
-	?>
-		<div class="site-logo">
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-				<div class="screen-reader-text">Go to the home page of <?php bloginfo( 'name' ); ?></div>
-				<?php if ( has_site_icon() ) : ?>
-					<?php $site_icon = esc_url( get_site_icon_url( 270 ) ); ?>
-					<img class="site-icon" src="<?php echo $site_icon; ?>" alt="" >
-				<?php else : ?>
-					<?php $the_site_firstletter = substr(get_bloginfo('title'), 0, 1); ?>
-					<div class="site-firstletter" aria-hidden="true">
-						<?php echo $the_site_firstletter; ?>
+							$tw_img = "fb";
+							$fb_img = "twt";
+							$ig_img = "ig";
+						} else {
+							$tw_img = "twitter";
+							$fb_img = "facebook";
+							$ig_img = "instagram";
+						}
+
+						wp_nav_menu(array(
+							"menu"				=> "Main",
+							"menu_class"		=> $clases,
+							"container_class"	=> "menu-nav"
+						));
+					?>
+					<div class="social">
+						<a href="#" target="_blank">
+							<img src="<?php echo IMAGES.'/'.$tw_img.'.svg'; ?>" alt="twitter">
+						</a>
+						<a href="#" target="_blank">
+							<img src="<?php echo IMAGES.'/'.$fb_img.'.svg'; ?>" alt="facebook">
+						</a>
+						<a href="#" target="_blank">
+							<img src="<?php echo IMAGES.'/'.$ig_img.'.svg'; ?>" alt="instagram">
+						</a>
 					</div>
-				<?php endif; ?>
-			</a>
+				</nav>
+			</div>
 		</div>
 
-		<div class="site-branding centered<?php if ( is_singular() ) : echo ' screen-reader-text'; endif; ?>">
-			<?php if ( is_front_page() && is_home() ) : ?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-			<?php else : ?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-			<?php endif; ?>
+<?php
+	if (is_front_page() && get_header_image() != null) {
+?>
+
+		<div class="container bg-color">
+			<div class="content map">
+				<div class="info text-center">
 			<?php
-				$site_description = get_bloginfo( 'description' );
-				if ($site_description != null ){ ?>
-				
-				<?php }
+				//Writes every line in the array and adds "-"
+				foreach ($description as $value) {
 			?>
-		</div><!-- .site-branding -->
-
-
-		<?php if ( has_nav_menu( 'primary' ) ) : ?>
-			<nav id="site-navigation" class="main-navigation clear" role="navigation">
-				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Menu', 'popper-child' ); ?></button>
-
-				<div class="all-menus centered">
-					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu' ) ); ?>
+					<p>
+						<?php 
+							if ($cont > 0) {
+								echo "-";
+							}
+							echo $value; 
+							$cont++;
+						?>
+					</p>
+			<?php
+				}
+			?>
 				</div>
+		<?php
 
-			</nav><!-- #site-navigation -->
+			//Custom button in home page
+			if (function_exists("get_custom")) {
 
-		<div class="descriptionBanner centered<?php if ( is_singular() ) : echo ' screen-reader-text'; endif; ?>">
-			<?php if ( is_front_page() && is_home() ) : ?>
-			<?php else : ?>
-				<p class="descriptionBanner"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-			<?php endif; ?>
+				$btn_label = get_custom("home_button_label");
+				$btn_link  = get_custom("home_button_link");
+
+				if ($btn_label && $btn_link) {
+		?>
+					<div class="custom-btn">
+						<a href="<?php echo $btn_link;?>"><?php echo $btn_label;?></a>
+					</div>
+		<?php	
+				}
+			}
+		?>
+			</div>
+		</div>
+<?php
+	}
+?>
+
+		<div class="container container-mark">
+			<div class="content">
+				<div class="container-title">
 			<?php
-				$site_description = get_bloginfo( 'description' );
-				if ($site_description != null ){ ?>
-				<p class="site-description"><?php bloginfo( 'description' ); ?></p>
-				<?php }
+				if (is_front_page()) {
 			?>
-		</div><!-- .site-branding -->
+					<img src="<?php echo IMAGES.'/latest_news.svg'; ?>" alt="Latest News">
+					<p>LATEST NEWS</p>
+			<?php
+				} else {
+					
+					if ( function_exists('get_field') ) {
+						$title = get_field("page-title");
+						$image = get_field("page-icon");	
+					} else {
+						$title = '';
+						$image = '';
+					}
 
-		<?php endif; ?>
-	</header><!-- #masthead -->
+					//Get author name as title
+					if ($title == "") {
+						$image = IMAGES."/contributors.svg";
+						$author = get_userdata(get_query_var("author"));
+						if ($author != null) {
+							$title = $author->first_name ." ". $author->last_name;
+						}
+					}
 
-	<div id="content" class="site-content">
+					//Get category name as title
+					if ($title == "") {
+						$category = get_category_by_slug(get_query_var("category_name"));
+						if ($category != null) {
+							$title = $category->cat_name;
+						}
+					}
+
+					//Get tag as title
+					if ($title == "") {
+						$title = get_query_var("tag");
+					}
+
+					//Get date as title
+					if ($title == "") {
+						
+						$date = get_query_var("year");
+
+						if ($date != "") {
+							//Concatenating month if exists
+							if (get_query_var("monthnum") != "") {
+								$date .= "-" . get_query_var("monthnum");
+								
+								$title = date("F Y", strtotime($date));
+							} else {
+								$title = date("Y", strtotime($date));
+							}
+						}
+					}
+
+					//Default Blog as title
+					if ($title == "") {
+						$title = "Blog";
+					}
+
+					if ($image != "") {
+			?>
+					<img src="<?php echo $image; ?>" alt="icon">
+			<?php
+					}
+			?>
+					<p><?php echo $title; ?></p>
+			<?php
+				}
+			?>
+				</div>
+			</div>
+		</div>
+
+	</header>
