@@ -18,121 +18,102 @@ class SiteOrigin_Widget_Image_Widget extends SiteOrigin_Widget {
 			array(
 
 			),
-			array(
-				'image' => array(
-					'type' => 'media',
-					'label' => __('Image file', 'so-widgets-bundle'),
-					'library' => 'image',
-					'fallback' => true,
-				),
-
-				'size' => array(
-					'type' => 'select',
-					'label' => __('Image size', 'so-widgets-bundle'),
-					'options' => array(
-						'full' => __('Full', 'so-widgets-bundle'),
-						'large' => __('Large', 'so-widgets-bundle'),
-						'medium' => __('Medium', 'so-widgets-bundle'),
-						'thumb' => __('Thumbnail', 'so-widgets-bundle'),
-					),
-				),
-
-				'align' => array(
-					'type' => 'select',
-					'label' => __('Image alignment', 'so-widgets-bundle'),
-					'default' => 'default',
-					'options' => array(
-						'default' => __('Default', 'so-widgets-bundle'),
-						'left' => __('Left', 'so-widgets-bundle'),
-						'right' => __('Right', 'so-widgets-bundle'),
-						'center' => __('Center', 'so-widgets-bundle'),
-					),
-				),
-
-				'title' => array(
-					'type' => 'text',
-					'label' => __('Title text', 'so-widgets-bundle'),
-				),
-
-				'title_position' => array(
-					'type' => 'select',
-					'label' => __('Title position', 'so-widgets-bundle'),
-					'default' => 'hidden',
-					'options' => array(
-						'hidden' => __( 'Hidden', 'so-widgets-bundle' ),
-						'above' => __( 'Above', 'so-widgets-bundle' ),
-						'below' => __( 'Below', 'so-widgets-bundle' ),
-					),
-				),
-
-				'alt' => array(
-					'type' => 'text',
-					'label' => __('Alt text', 'so-widgets-bundle'),
-				),
-
-				'url' => array(
-					'type' => 'link',
-					'label' => __('Destination URL', 'so-widgets-bundle'),
-				),
-				'new_window' => array(
-					'type' => 'checkbox',
-					'default' => false,
-					'label' => __('Open in new window', 'so-widgets-bundle'),
-				),
-
-				'bound' => array(
-					'type' => 'checkbox',
-					'default' => true,
-					'label' => __('Bound', 'so-widgets-bundle'),
-					'description' => __("Make sure the image doesn't extend beyond its container.", 'so-widgets-bundle'),
-				),
-				'full_width' => array(
-					'type' => 'checkbox',
-					'default' => false,
-					'label' => __('Full Width', 'so-widgets-bundle'),
-					'description' => __("Resize image to fit its container.", 'so-widgets-bundle'),
-				),
-
-			),
-			plugin_dir_path(__FILE__).'../'
+			false,
+			plugin_dir_path(__FILE__)
 		);
 	}
 
-	function modify_form($form){
-		global $_wp_additional_image_sizes;
-		if( !empty($_wp_additional_image_sizes) ) {
-			foreach($_wp_additional_image_sizes as $i => $s) {
-				$form['size']['options'][$i] = $i;
-			}
-		}
+	function get_widget_form() {
 
-		return $form;
+		return array(
+			'image' => array(
+				'type' => 'media',
+				'label' => __('Image file', 'so-widgets-bundle'),
+				'library' => 'image',
+				'fallback' => true,
+			),
+
+			'size' => array(
+				'type' => 'image-size',
+				'label' => __('Image size', 'so-widgets-bundle'),
+			),
+
+			'align' => array(
+				'type' => 'select',
+				'label' => __('Image alignment', 'so-widgets-bundle'),
+				'default' => 'default',
+				'options' => array(
+					'default' => __('Default', 'so-widgets-bundle'),
+					'left' => __('Left', 'so-widgets-bundle'),
+					'right' => __('Right', 'so-widgets-bundle'),
+					'center' => __('Center', 'so-widgets-bundle'),
+				),
+			),
+
+			'title' => array(
+				'type' => 'text',
+				'label' => __('Title text', 'so-widgets-bundle'),
+			),
+
+			'title_position' => array(
+				'type' => 'select',
+				'label' => __('Title position', 'so-widgets-bundle'),
+				'default' => 'hidden',
+				'options' => array(
+					'hidden' => __( 'Hidden', 'so-widgets-bundle' ),
+					'above' => __( 'Above', 'so-widgets-bundle' ),
+					'below' => __( 'Below', 'so-widgets-bundle' ),
+				),
+			),
+
+			'alt' => array(
+				'type' => 'text',
+				'label' => __('Alt text', 'so-widgets-bundle'),
+			),
+
+			'url' => array(
+				'type' => 'link',
+				'label' => __('Destination URL', 'so-widgets-bundle'),
+			),
+			'new_window' => array(
+				'type' => 'checkbox',
+				'default' => false,
+				'label' => __('Open in new window', 'so-widgets-bundle'),
+			),
+
+			'bound' => array(
+				'type' => 'checkbox',
+				'default' => true,
+				'label' => __('Bound', 'so-widgets-bundle'),
+				'description' => __("Make sure the image doesn't extend beyond its container.", 'so-widgets-bundle'),
+			),
+			'full_width' => array(
+				'type' => 'checkbox',
+				'default' => false,
+				'label' => __('Full Width', 'so-widgets-bundle'),
+				'description' => __("Resize image to fit its container.", 'so-widgets-bundle'),
+			),
+
+		);
 	}
 
 	function get_style_hash($instance) {
 		return substr( md5( serialize( $this->get_less_variables( $instance ) ) ), 0, 12 );
 	}
 
-	function get_template_name($instance) {
-		return 'base';
-	}
-
 	public function get_template_variables( $instance, $args ) {
 		return array(
-			'title' => $instance['title'],
+			'title' => !empty( $instance['title'] ) ? $instance['title'] : get_the_title( $instance['image'] ),
 			'title_position' => $instance['title_position'],
 			'image' => $instance['image'],
 			'size' => $instance['size'],
 			'image_fallback' => ! empty( $instance['image_fallback'] ) ? $instance['image_fallback'] : false,
-			'alt' => $instance['alt'],
+			'alt' => !empty( $instance['alt'] ) ? $instance['alt'] : get_post_meta( $instance['image'], '_wp_attachment_image_alt', true ),
 			'url' => $instance['url'],
 			'new_window' => $instance['new_window'],
 		);
 	}
 
-	function get_style_name($instance) {
-		return 'sow-image';
-	}
 
 	function get_less_variables($instance){
 		return array(

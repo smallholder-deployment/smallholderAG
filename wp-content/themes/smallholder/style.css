@@ -8,23 +8,23 @@ Author URI: http://www.bkdf.nyc/
 */
 
 @font-face {
-	font-family: Avenir;  
-	src: local('Avenir'), 
-		url("fonts/AvenirNextLTPro-Regular.woff");  
+	font-family: Avenir;
+	src: local('Avenir'),
+		url("fonts/AvenirNextLTPro-Regular.woff");
 	font-weight: normal;
 }
 
 @font-face {
-	font-family: Avenir Demi;  
-	src: local('Avenir Demi'), 
-		url("fonts/AvenirNextLTPro-Demi.woff");  
+	font-family: Avenir Demi;
+	src: local('Avenir Demi'),
+		url("fonts/AvenirNextLTPro-Demi.woff");
 	font-weight: normal;
 }
 
 * {
 	margin: 0;
 	padding: 0;
-	
+
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	-ms-box-sizing: border-box;
@@ -82,7 +82,8 @@ footer,
 .large-control,
 .logo-title,
 .publications-content,
-.accordion .accordion-header {
+.accordion .accordion-header,
+.author-profile {
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -moz-box;
@@ -90,7 +91,7 @@ footer,
 	display: -ms-flexbox;
 	display: -ms-flex;
 	display: flex;
-	
+
 	-webkit-flex-flow: row wrap;
 	-moz-flex-flow: row wrap;
 	-ms-flex-flow: row wrap;
@@ -131,8 +132,8 @@ nav,
 	justify-content: space-between;
 }
 
-nav, 
-.main {	
+nav,
+.main {
 	-webkit-flex-grow: 1;
 	-moz-flex-grow: 1;
 	-ms-flex-grow: 1;
@@ -142,6 +143,7 @@ nav,
 /* End flex section */
 
 body {
+	background-color: rgb(202,215,124);
 	background-image: url(images/bounceBG.png);
 	background-repeat: repeat;
 	font-family: 'Avenir';
@@ -164,7 +166,8 @@ a {
 }
 
 a:hover {
-	text-decoration: underline;
+	color: rgba(24,27,43,0.8);
+	text-decoration: none;
 }
 
 header {
@@ -200,9 +203,9 @@ header a:hover {
 }
 
 .logo a {
-   position: absolute; 
+   position: absolute;
    top: 54%;
-   left: 0px; 
+   left: 0px;
    color: #fff;
    font-family: "Avenir Demi";
    font-size: 58px;
@@ -262,7 +265,7 @@ header a:hover {
 	top: 5px;
 }
 
-.logo-title a { 
+.logo-title a {
    color: #fff;
    font-family: "Avenir Demi";
    font-size: 40px;
@@ -284,7 +287,7 @@ header a:hover {
 	font-weight: bold;
 	margin: 0 20px;
 	text-transform: uppercase;
-	
+
 	-webkit-transition: color 0.3s;
 	-moz-transition: color 0.3s;
 	-ms-transition: color 0.3s;
@@ -334,14 +337,14 @@ header a:hover {
 .container-title p {
 	padding: 15px 0;
 	text-transform: uppercase;
-	font-size: 2em;
+	font-size: 1.8em;
 	color: rgb(49,59,63);
 }
 
 .container-title img {
 	width: 35px;
 	height: 35px;
-	margin-right: 15px; 
+	margin-right: 15px;
 }
 
 .container-mark {
@@ -389,7 +392,7 @@ article img {
 
 footer {
 	width: 100%;
-	border-top: 3px solid rgb(247,86,0);
+	border-top: 2px solid rgb(247,86,0);
 	background: rgb(245,248,231);
 	display: block;
 }
@@ -398,6 +401,7 @@ footer img {
 	height: auto;
 	width: auto;
 	margin: 10px auto;
+	max-width: 600px;
 }
 
 .content.footer-container {
@@ -407,7 +411,7 @@ footer img {
 .custom-widget {
 	margin: 0 0 60px 0;
 	width: 90%;
-	border-top: 3px solid rgb(247,86,0); 
+	border-top: 2px solid rgb(247,86,0);
 	list-style: none;
 }
 
@@ -434,7 +438,7 @@ footer img {
 	background-image: url(images/map.svg);
 	background-repeat: no-repeat;
 	background-size: cover;
-	background-position: center center;   
+	background-position: center center;
 	background-color:#f6f8e8;
 }
 
@@ -550,11 +554,11 @@ footer img {
 }
 
 .margin-edge {
-	margin-left: 12px !important;	
+	margin-left: 12px !important;
 }
 
 .margin-browsers {
-	margin-left: 18px !important;		
+	margin-left: 18px !important;
 }
 
 .contributors-container {
@@ -570,7 +574,7 @@ footer img {
 	width: 31%;
 	background: rgb(245,248,231);
 	font-size: 0.9em;
-	margin-bottom: 60px;
+	margin-bottom: 30px;
 }
 
 .contributor-box img {
@@ -585,6 +589,10 @@ footer img {
 
 .orange {
 	color: rgb(247,86,0);
+}
+
+.orange:hover {
+	color: rgba(247,86,0,0.8);
 }
 
 .bold {
@@ -606,7 +614,7 @@ footer img {
 
 .three-cols article {
 	width: 28%;
-	border-top: 3px solid rgb(247,86,0);
+	border-top: 2px solid rgb(247,86,0);
 }
 
 .three-cols hgroup {
@@ -657,13 +665,17 @@ footer img {
 	padding: 0 20px 0 0;
 }
 
+.read-more a:hover {
+	color: rgba(247,86,0,0.8);
+}
+
 .accordion {
 	margin-bottom: 60px;
 }
 
 .accordion .accordion-header {
 	background: rgb(245,248,231);
-	border-top: 3px solid rgb(247,86,0);
+	border-top: 2px solid rgb(247,86,0);
 	padding: 10px;
 	cursor: pointer;
 	outline: none;
@@ -738,7 +750,7 @@ footer img {
 .publications-box {
 	margin-top: 60px !important;
 	margin-bottom: 0 !important;
-	border-top: 3px solid rgb(202,215,124) !important;
+	border-top: 2px solid rgb(202,215,124) !important;
 }
 
 .project-box > hgroup > p {
@@ -763,6 +775,10 @@ footer img {
 
 .publications-title a {
 	color: rgb(247,86,0);
+}
+
+.publications-title a:hover {
+	color: rgba(247,86,0,0.8);
 }
 
 .publications-content div {
@@ -847,9 +863,46 @@ footer img {
 	opacity: 0.6;
 }
 
+.author-profile {
+	background-color: rgb(245,248,231);
+	border-top: 2px solid rgb(247,86,0);
+	padding: 10px 0;
+}
+
+.author-profile .profile-avatar {
+	-webkit-box-flex: 0 0 35%;
+	-webkit-flex: 0 0 35%;
+	-moz-flex: 0 0 35%;
+	-ms-flex: 0 0 35%;
+	flex: 0 0 35%;
+}
+
+.author-profile .description {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	-moz-flex: 1;
+	-ms-flex: 1;
+	flex: 1;
+
+	padding: 0 20px;
+	text-align: justify;
+	line-height: 1.2;
+	position: relative;
+}
+
+.author-profile .description .bio {
+	padding: 0 0 30px 0;
+}
+
+.author-profile .description .email {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	padding: 0 20px;
+}
 
 @media screen and (max-width: 768px) {
-	
+
 	nav {
 		-webkit-justify-content: center;
 		-moz-justify-content: center;
@@ -861,7 +914,7 @@ footer img {
 	.three-cols article {
 		width: 45%;
 	}
-	
+
 	.first-post {
 		-webkit-flex-direction: row;
 		-moz-flex-direction: row;
@@ -892,7 +945,7 @@ footer img {
 	.large-control {
 		display: none !important;
 	}
-	
+
 	.second-post {
 		-webkit-justify-content: flex-start;
 		-moz-justify-content: flex-start;
@@ -947,11 +1000,15 @@ footer img {
 	.info a {
 		font-size: 50px;
 	}
+
+	.container-title p {
+		font-size: 1.6em;
+	}
 }
 
 
 @media screen and (max-width: 600px) {
-	
+
 	.logo a,
 	.info a {
 		font-size: 40px;
@@ -976,7 +1033,7 @@ footer img {
 
 
 @media screen and (max-width: 480px) {
-	
+
 	.three-cols article,
 	.second-post > div,
 	.second-post hgroup {
@@ -1024,11 +1081,23 @@ footer img {
 	.large-control-480 {
 		display: none !important;
 	}
+
+	.author-profile .profile-avatar {
+		-webkit-box-flex: 0 0 100%;
+		-webkit-flex: 0 0 100%;
+		-moz-flex: 0 0 100%;
+		-ms-flex: 0 0 100%;
+		flex: 0 0 100%;
+
+		text-align: center;
+		padding: 0 20px;
+		margin-bottom: 10px;
+	}
 }
 
 
 @media screen and (max-width: 320px) {
-	
+
 	.custom-widget {
 		width: 95%;
 	}

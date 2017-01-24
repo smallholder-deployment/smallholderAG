@@ -60,7 +60,13 @@ jQuery(function ($) {
 			});
         });
     };
+	
+	resizeMasonry();
 
-    $(window).resize(resizeMasonry);
-    resizeMasonry();
+	$(window).on('resize panelsStretchRows', resizeMasonry);
+
+	// Ensure that the masonry has resized correct on load.
+	setTimeout( function () {
+		resizeMasonry();
+	}, 100 );
 });

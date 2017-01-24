@@ -19,7 +19,7 @@ class SiteOrigin_Widget_Field_Measurement extends SiteOrigin_Widget_Field_Text_I
 	 * @return array
 	 */
 	protected function get_render_values( $value ) {
-		preg_match('/(\d+)([a-z%]+)*/', $value, $matches);
+		preg_match('/(\d+\.?\d*)([a-z%]+)*/', $value, $matches);
 		$num_matches = count( $matches );
 		$val = array();
 		$val['value'] = $num_matches > 1 ? $matches[1] : null;
@@ -47,7 +47,7 @@ class SiteOrigin_Widget_Field_Measurement extends SiteOrigin_Widget_Field_Text_I
 			}
 		}
 		?>
-		<select class="sow-measurement-select-unit"
+		<select class="sow-measurement-select-unit siteorigin-widget-input"
 				name="<?php echo esc_attr( $this->for_widget->so_get_field_name( $this->base_name . '_unit', $this->parent_container ) ) ?>">
 			<?php foreach ( siteorigin_widgets_get_measurements_list() as $measurement ):?>
 				<option value="<?php echo esc_attr( $measurement ) ?>" <?php selected( $measurement, $unit, true ); ?>><?php echo esc_html( $measurement ) ?></option>
@@ -60,7 +60,7 @@ class SiteOrigin_Widget_Field_Measurement extends SiteOrigin_Widget_Field_Text_I
 	}
 
 	public function enqueue_scripts() {
-		wp_enqueue_style( 'so-measurement-field', plugin_dir_url(__FILE__) . 'css/so-measurement-field.css', array(), SOW_BUNDLE_VERSION );
+		wp_enqueue_style( 'so-measurement-field', plugin_dir_url(__FILE__) . 'css/measurement-field.css', array(), SOW_BUNDLE_VERSION );
 	}
 
 	// This is doing sanitization and is being used to concatenate the numeric measurement value and the selected
@@ -80,8 +80,7 @@ class SiteOrigin_Widget_Field_Measurement extends SiteOrigin_Widget_Field_Text_I
 			unset( $instance[ $unit_name ] );
 		}
 
-		$value = ( $value === '' ) ? false : (float) $value;
-		$value .= $unit;
+		$value = ( $value === '' ) ? false : ( (float) $value ) . $unit;
 		return $value;
 	}
 

@@ -4,6 +4,13 @@
 	<div class="content content-post">
 		<section>
 <?php
+	// Author profile
+	$author = get_userdata(get_query_var("author"));
+	if ($author != null) {
+		get_template_part("includes/author-profile");
+		author_profile($author);
+	}
+
 	if ( have_posts() ) {
 		while ( have_posts() ) {
 			the_post();

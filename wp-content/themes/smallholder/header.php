@@ -13,7 +13,7 @@
 	<header>
 		<!--Top Green Line-->
 		<hr class="green-line">
-		
+
 <?php
 	if (is_front_page() && get_header_image() != null) {
 ?>
@@ -48,11 +48,11 @@
 					foreach ($description as $value) {
 				?>
 						<p class="description-control">
-							<?php 
+							<?php
 								if ($cont > 0) {
 									echo "-";
 								}
-								echo $value; 
+								echo $value;
 								$cont++;
 							?>
 						</p>
@@ -74,14 +74,14 @@
 													 get_header_image() == null) ? 'bg-color' : '' ;?>">
 			<div class="content">
 				<nav>
-					<?php 
+					<?php
 						$clases = "menu-nav";
 
 						if (!is_front_page() || get_header_image() == null) {
 							$clases .= " internal-nav";
 
-							$tw_img = "fb";
-							$fb_img = "twt";
+							$tw_img = "twt";
+							$fb_img = "fb";
 							$ig_img = "ig";
 						} else {
 							$tw_img = "twitter";
@@ -96,10 +96,10 @@
 						));
 					?>
 					<div class="social">
-						<a href="#" target="_blank">
+						<a href="https://twitter.com/SmallholderAg" target="_blank">
 							<img src="<?php echo IMAGES.'/'.$tw_img.'.svg'; ?>" alt="twitter">
 						</a>
-						<a href="#" target="_blank">
+						<a href="https://www.facebook.com/smallholder.ag/" target="_blank">
 							<img src="<?php echo IMAGES.'/'.$fb_img.'.svg'; ?>" alt="facebook">
 						</a>
 						<a href="#" target="_blank">
@@ -122,11 +122,11 @@
 				foreach ($description as $value) {
 			?>
 					<p>
-						<?php 
+						<?php
 							if ($cont > 0) {
 								echo "-";
 							}
-							echo $value; 
+							echo $value;
 							$cont++;
 						?>
 					</p>
@@ -147,7 +147,7 @@
 					<div class="custom-btn">
 						<a href="<?php echo $btn_link;?>"><?php echo $btn_label;?></a>
 					</div>
-		<?php	
+		<?php
 				}
 			}
 		?>
@@ -167,10 +167,10 @@
 					<p>LATEST NEWS</p>
 			<?php
 				} else {
-					
+
 					if ( function_exists('get_field') ) {
 						$title = get_field("page-title");
-						$image = get_field("page-icon");	
+						$image = get_field("page-icon");
 					} else {
 						$title = '';
 						$image = '';
@@ -200,14 +200,14 @@
 
 					//Get date as title
 					if ($title == "") {
-						
+
 						$date = get_query_var("year");
 
 						if ($date != "") {
 							//Concatenating month if exists
 							if (get_query_var("monthnum") != "") {
 								$date .= "-" . get_query_var("monthnum");
-								
+
 								$title = date("F Y", strtotime($date));
 							} else {
 								$title = date("Y", strtotime($date));
